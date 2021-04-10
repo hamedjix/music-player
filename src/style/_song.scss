@@ -1,0 +1,16 @@
+.song-container {
+  color: rgb(54, 54, 54);
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 400px;
+    max-width: 80vw;
+    border-radius: 30px;
+  }
+  h2 {
+    padding: 3rem 1rem 1rem 1rem;
+  }
+}
