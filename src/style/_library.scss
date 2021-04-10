@@ -1,0 +1,35 @@
+.library {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 20rem;
+  overflow-y: scroll;
+  height: 100%;
+  h2 {
+    padding: 2rem;
+  }
+}
+.library-song {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0.5rem;
+  cursor: pointer;
+  &:hover {
+    background: rgb(197, 207, 235);
+  }
+  h3 {
+    font-size: 1rem;
+    padding-bottom: 0.3rem;
+    // white-space: nowrap;
+  }
+  h4 {
+    font-size: 0.8rem;
+    color: rgb(81, 80, 82);
+    // white-space: nowrap;
+  }
+
+  img {
+    padding: 1rem;
+    width: 40%;
+  }
+}

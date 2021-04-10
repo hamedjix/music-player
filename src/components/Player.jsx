@@ -21,6 +21,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying, setCurrentSong }) => {
     if (isPlaying) {
       audioRef.current.pause();
       setIsPlaying(!isPlaying);
+      console.log(audioRef);
     } else {
       audioRef.current.play();
       setIsPlaying(!isPlaying);

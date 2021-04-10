@@ -4,6 +4,7 @@ import './style/App.scss';
 //Importing Components
 import Song from './components/Song';
 import Player from './components/Player';
+import Library from './components/Library';
 //import util
 import data from './util';
 function App() {
@@ -20,6 +21,7 @@ function App() {
         currentSong={currentSong}
         setCurrentSong={setCurrentSong}
       />
+      <Library songs={songs} setCurrentSong={setCurrentSong} />
     </div>
   );
 }
