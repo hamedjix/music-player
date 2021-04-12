@@ -1,4 +1,3 @@
-import { playAudio } from '../asyncPlay';
 const LibrarySong = ({
   song,
   songs,
@@ -9,7 +8,7 @@ const LibrarySong = ({
   id,
   setSongs,
 }) => {
-  const selectSongHandler = () => {
+  const selectSongHandler = async () => {
     const newSongs = songs.map((song) => {
       if (song.id === id) {
         return {
@@ -24,8 +23,8 @@ const LibrarySong = ({
       }
     });
     setSongs(newSongs);
-    setCurrentSong(song);
-    playAudio(isPlaying, audioRef);
+    await setCurrentSong(song);
+    if (isPlaying) audioRef.current.play();
   };
   return (
     <div
