@@ -1,0 +1,25 @@
+.nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+  button {
+    padding: 0.5rem 2rem;
+    background: rgb(216, 215, 215);
+    border: none;
+    box-shadow: 0 5px 5px 3px grey;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 10px;
+    &:hover {
+      background: rgb(100, 100, 100);
+      color: white;
+    }
+    &:focus {
+      box-shadow: 0 5px 5px 1px grey;
+      transform: translateY(5%);
+      outline: none;
+    }
+  }
+}

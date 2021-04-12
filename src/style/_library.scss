@@ -5,9 +5,17 @@
   width: 20rem;
   overflow-y: scroll;
   height: 100%;
+  background-color: white;
+  transition: all 0.5s ease;
+  transform: translateX(-100%);
+  opacity: 0;
   h2 {
     padding: 2rem;
   }
+}
+.library-active {
+  transform: translateX(0%);
+  opacity: 1;
 }
 .library-song {
   display: flex;
@@ -15,7 +23,7 @@
   padding: 1rem 0.5rem;
   cursor: pointer;
   &:hover {
-    background: rgb(197, 207, 235);
+    background: rgb(226, 226, 226);
   }
   h3 {
     font-size: 1rem;
@@ -32,4 +40,7 @@
     padding: 1rem;
     width: 40%;
   }
+}
+.selected {
+  background: rgb(166, 189, 226);
 }
