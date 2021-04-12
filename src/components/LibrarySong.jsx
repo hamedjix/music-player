@@ -1,3 +1,4 @@
+import { playAudio } from '../asyncPlay';
 const LibrarySong = ({
   song,
   songs,
@@ -24,15 +25,7 @@ const LibrarySong = ({
     });
     setSongs(newSongs);
     setCurrentSong(song);
-    if (isPlaying) {
-      const playPromise = audioRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.then(() => {
-          audioRef.current.play();
-          setIsPlaying(true);
-        });
-      }
-    }
+    playAudio(isPlaying, audioRef);
   };
   return (
     <div

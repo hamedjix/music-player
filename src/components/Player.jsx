@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { playAudio } from '../asyncPlay';
 //FontAwsome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -17,6 +19,7 @@ const Player = ({
   setSongInfo,
   songInfo,
   songs,
+  setSongs,
 }) => {
   //Time Format Function
   const getTime = (time) => {
@@ -33,6 +36,7 @@ const Player = ({
       current: e.target.value,
     });
   };
+
   //Skip Track Handler
   const skipTrackHandler = (direction) => {
     let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
@@ -42,11 +46,31 @@ const Player = ({
     if (direction === 'skip-previous') {
       if ((currentIndex - 1) % songs.length === -1) {
         setCurrentSong(songs[songs.length - 1]);
+        playAudio(isPlaying, audioRef);
         return;
       }
       setCurrentSong(songs[(currentIndex - 1) % songs.length]);
     }
+    playAudio(isPlaying, audioRef);
   };
+
+  //useEffect
+  useEffect(() => {
+    const newSongs = songs.map((song) => {
+      if (song.id === currentSong.id) {
+        return {
+          ...song,
+          active: true,
+        };
+      } else {
+        return {
+          ...song,
+          active: false,
+        };
+      }
+    });
+    setSongs(newSongs);
+  }, [currentSong]);
 
   return (
     <div className='player'>
@@ -59,7 +83,7 @@ const Player = ({
           type='range'
           onChange={onChangeHandler}
         />
-        <p>{getTime(songInfo.duration)}</p>
+        <p>{songInfo.duration ? getTime(songInfo.duration) : '0:00'}</p>
       </div>
       <div className='play-control'>
         <FontAwesomeIcon

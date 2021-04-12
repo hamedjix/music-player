@@ -5,9 +5,10 @@ import './style/App.scss';
 import Song from './components/Song';
 import Player from './components/Player';
 import Library from './components/Library';
-//import util
-import data from './util';
 import Nav from './components/Nav';
+//import data
+import data from './data';
+
 function App() {
   //State
   const [songs, setSongs] = useState(data());
@@ -53,6 +54,7 @@ function App() {
         songInfo={songInfo}
         setSongInfo={setSongInfo}
         songs={songs}
+        setSongs={setSongs}
       />
       <Library
         songs={songs}
