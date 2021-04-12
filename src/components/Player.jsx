@@ -1,4 +1,3 @@
-import React, { useRef, useState } from 'react';
 //FontAwsome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -7,38 +6,27 @@ import {
   faPlay,
   faPause,
 } from '@fortawesome/free-solid-svg-icons';
-const Player = ({ currentSong, isPlaying, setIsPlaying, setCurrentSong }) => {
-  //Ref
-  const audioRef = useRef(null);
+
+//Component Start
+const Player = ({
+  currentSong,
+  isPlaying,
+  setIsPlaying,
+  setCurrentSong,
+  playSongHandler,
+  audioRef,
+  setSongInfo,
+  songInfo,
+}) => {
   //Time Format Function
   const getTime = (time) => {
     return (
       Math.floor(time / 60) + ':' + ('0' + Math.floor(time % 60)).slice(-2)
     );
   };
-  //onClick Handler
-  const playSongHandler = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(!isPlaying);
-      console.log(audioRef);
-    } else {
-      audioRef.current.play();
-      setIsPlaying(!isPlaying);
-    }
-  };
-  // onTimeUpdate Handler
-  const timeUpdateHandler = (e) => {
-    setSongInfo({
-      ...songInfo,
-      current: e.target.currentTime,
-      duration: e.target.duration,
-    });
-  };
+
   //Current Song Handler
-  const currentSongHandler = () => {
-    setCurrentSong();
-  };
+  const currentSongHandler = () => {};
   //onChange Handler
   const onChangeHandler = (e) => {
     audioRef.current.currentTime = e.target.value;
@@ -48,19 +36,13 @@ const Player = ({ currentSong, isPlaying, setIsPlaying, setCurrentSong }) => {
     });
   };
 
-  //State
-  const [songInfo, setSongInfo] = useState({
-    current: 0,
-    duration: 0,
-  });
-
   return (
     <div className='player'>
       <div className='time-control'>
         <p>{getTime(songInfo.current)}</p>
         <input
           min={0}
-          max={songInfo.duration}
+          max={songInfo.duration || 0}
           value={songInfo.current}
           type='range'
           onChange={onChangeHandler}
@@ -85,12 +67,6 @@ const Player = ({ currentSong, isPlaying, setIsPlaying, setCurrentSong }) => {
           icon={faAngleRight}
           onClick={currentSongHandler}
         />
-        <audio
-          onTimeUpdate={timeUpdateHandler}
-          onLoadedMetadata={timeUpdateHandler}
-          ref={audioRef}
-          src={currentSong.audio}
-        ></audio>
       </div>
     </div>
   );
